@@ -19,7 +19,7 @@
 00000000000i[      ]   Sound support: no
 00000000000i[      ]   USB support: no
 00000000000i[      ]   VGA extension support: vbe
-00000000000i[MEM0  ] allocated memory at 0x7f9376c31000. after alignment, vector=0x7f9376c31000
+00000000000i[MEM0  ] allocated memory at 0x7fd6f1800000. after alignment, vector=0x7fd6f1800000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('/Users/smileyezzz/Documents/Docker_info/sf_pivot/My-little-OS/bochs/share/bochs/BIOS-bochs-latest')
@@ -29,7 +29,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Tue Jan 19 01:20:43 2021 (time0=1610990443)
+00000000000i[CMOS  ] Setting initial clock to: Thu Feb 11 01:03:42 2021 (time0=1612976622)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -255,25 +255,24 @@
 00002396995i[BIOS  ] ata0-0: PCHS=121/16/63 translation=none LCHS=121/16/63
 00005843851i[BIOS  ] IDE time out
 00006121281i[BIOS  ] Booting from 0000:7c00
-00409013288i[      ] Ctrl-C detected in signal handler.
-00409013289i[      ] dbg: Quit
-00409013289i[CPU0  ] CPU is in real mode (active)
-00409013289i[CPU0  ] CS.mode = 16 bit
-00409013289i[CPU0  ] SS.mode = 16 bit
-00409013289i[CPU0  ] EFER   = 0x00000000
-00409013289i[CPU0  ] | EAX=00001301  EBX=00000002  ECX=00090005  EDX=00001000
-00409013289i[CPU0  ] | ESP=00007c00  EBP=00007c33  ESI=000e0000  EDI=0000fdbc
-00409013289i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf SF zf af pf cf
-00409013289i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
-00409013289i[CPU0  ] |  CS:0000( 0004| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] |  DS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] |  SS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] |  ES:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] |  FS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] |  GS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00409013289i[CPU0  ] | EIP=00007c31 (00007c31)
-00409013289i[CPU0  ] | CR0=0x60000010 CR2=0x00000000
-00409013289i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
-00409013289d[PCI   ] Exit
-00409013289i[CMOS  ] Last time is 1610990451 (Tue Jan 19 01:20:51 2021)
-00409013289i[SIM   ] quit_sim called with exit code 0
+00977950000p[SDL2  ] >>PANIC<< User requested shutdown.
+00977950000i[CPU0  ] CPU is in real mode (active)
+00977950000i[CPU0  ] CS.mode = 16 bit
+00977950000i[CPU0  ] SS.mode = 16 bit
+00977950000i[CPU0  ] EFER   = 0x00000000
+00977950000i[CPU0  ] | EAX=0000b800  EBX=00000b00  ECX=00090000  EDX=000001f0
+00977950000i[CPU0  ] | ESP=00007c00  EBP=00000000  ESI=00000002  EDI=00000001
+00977950000i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf ZF af PF cf
+00977950000i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
+00977950000i[CPU0  ] |  CS:0000( 0004| 0|  0) 00000000 0000ffff 0 0
+00977950000i[CPU0  ] |  DS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+00977950000i[CPU0  ] |  SS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+00977950000i[CPU0  ] |  ES:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+00977950000i[CPU0  ] |  FS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+00977950000i[CPU0  ] |  GS:b800( 0005| 0|  0) 000b8000 0000ffff 0 0
+00977950000i[CPU0  ] | EIP=00000968 (00000968)
+00977950000i[CPU0  ] | CR0=0x60000010 CR2=0x00000000
+00977950000i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
+00977950000d[PCI   ] Exit
+00977950000i[CMOS  ] Last time is 1612976641 (Thu Feb 11 01:04:01 2021)
+00977950000i[SIM   ] quit_sim called with exit code 1
