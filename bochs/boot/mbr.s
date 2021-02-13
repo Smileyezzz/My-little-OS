@@ -50,7 +50,7 @@ section MBR vstart=0x7c00
 ; ------------------------------------------
     mov eax, LOADER_START_SECTOR ; start sector set 2 here, cause mbr is at 0 [The LBA of start sector]
     mov bx, LOADER_BASE_ADDR     ; base address set 0x900 here [The memory address to be write]
-    mov cx, 1                    ; cx is the number of sectors to be read
+    mov cx, 2                    ; cx is the number of sectors to be read
     call rd_disk                 ; eax, bx, cx are the parameters of function rd_disk()
 
     jmp LOADER_BASE_ADDR
