@@ -36,24 +36,24 @@ section MBR vstart=0x7c00
 ; one character has two bytes : 1'st byte is content, 2'nd byte is attribution
 ; ------------------------------------------
     mov byte [gs:0x00], '1'
-    mov byte [gs:0x01], 0xa4    ; a is shinning green (background) and 4 is red (frontground)
+    mov byte [gs:0x01], 0x24    ; a is shinning green (background) and 4 is red (frontground)
     mov byte [gs:0x02], ' '
-    mov byte [gs:0x03], 0xa4
+    mov byte [gs:0x03], 0x24
     mov byte [gs:0x04], 'M'
-    mov byte [gs:0x05], 0xa4
+    mov byte [gs:0x05], 0x24
     mov byte [gs:0x06], 'B'
-    mov byte [gs:0x07], 0xa4
+    mov byte [gs:0x07], 0x24
     mov byte [gs:0x08], 'R'
-    mov byte [gs:0x09], 0xa4
+    mov byte [gs:0x09], 0x24
 
 ; use MBR to jump to the loader
 ; ------------------------------------------
     mov eax, LOADER_START_SECTOR ; start sector set 2 here, cause mbr is at 0 [The LBA of start sector]
     mov bx, LOADER_BASE_ADDR     ; base address set 0x900 here [The memory address to be write]
-    mov cx, 2                    ; cx is the number of sectors to be read
+    mov cx, 3                    ; cx is the number of sectors to be read
     call rd_disk                 ; eax, bx, cx are the parameters of function rd_disk()
 
-    jmp LOADER_BASE_ADDR
+    jmp LOADER_BASE_ADDR+0x300
 
 ; function of reading n sectors 
 ; ------------------------------------------

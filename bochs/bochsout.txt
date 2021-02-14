@@ -19,7 +19,7 @@
 00000000000i[      ]   Sound support: no
 00000000000i[      ]   USB support: no
 00000000000i[      ]   VGA extension support: vbe
-00000000000i[MEM0  ] allocated memory at 0x7f9bc5000000. after alignment, vector=0x7f9bc5000000
+00000000000i[MEM0  ] allocated memory at 0x7fdebb800000. after alignment, vector=0x7fdebb800000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('/Users/smileyezzz/Documents/Docker_info/sf_pivot/My-little-OS/bochs/share/bochs/BIOS-bochs-latest')
@@ -29,7 +29,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Sat Feb 13 16:55:43 2021 (time0=1613206543)
+00000000000i[CMOS  ] Setting initial clock to: Mon Feb 15 00:38:36 2021 (time0=1613320716)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -253,27 +253,28 @@
 00002046536i[BXVGA ] VBE known Display Interface b0c5
 00002049179i[VBIOS ] VBE Bios $Id: vbe.c 228 2020-01-02 23:09:02Z vruppert $
 00002396995i[BIOS  ] ata0-0: PCHS=121/16/63 translation=none LCHS=121/16/63
-00005843851i[BIOS  ] IDE time out
-00006121281i[BIOS  ] Booting from 0000:7c00
-00023037091i[      ] Ctrl-C detected in signal handler.
-00023037092i[      ] dbg: Quit
-00023037092i[CPU0  ] CPU is in protected mode (active)
-00023037092i[CPU0  ] CS.mode = 32 bit
-00023037092i[CPU0  ] SS.mode = 32 bit
-00023037092i[CPU0  ] EFER   = 0x00000000
-00023037092i[CPU0  ] | EAX=60000018  EBX=0000001f  ECX=00090011  EDX=00001800
-00023037092i[CPU0  ] | ESP=00000900  EBP=00000b09  ESI=00000002  EDI=00000002
-00023037092i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af PF cf
-00023037092i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
-00023037092i[CPU0  ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
-00023037092i[CPU0  ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00023037092i[CPU0  ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00023037092i[CPU0  ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00023037092i[CPU0  ] |  FS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
-00023037092i[CPU0  ] |  GS:0018( 0003| 0|  0) 000b8000 00007fff 1 1
-00023037092i[CPU0  ] | EIP=00000b68 (00000b68)
-00023037092i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
-00023037092i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
-00023037092d[PCI   ] Exit
-00023037092i[CMOS  ] Last time is 1613206543 (Sat Feb 13 16:55:43 2021)
-00023037092i[SIM   ] quit_sim called with exit code 0
+00005844077i[BIOS  ] IDE time out
+00006121507i[BIOS  ] Booting from 0000:7c00
+00023885770i[      ] Ctrl-C detected in signal handler.
+00140091040i[      ] Ctrl-C detected in signal handler.
+00140091041i[      ] dbg: Quit
+00140091041i[CPU0  ] CPU is in protected mode (active)
+00140091041i[CPU0  ] CS.mode = 32 bit
+00140091041i[CPU0  ] SS.mode = 32 bit
+00140091041i[CPU0  ] EFER   = 0x00000000
+00140091041i[CPU0  ] | EAX=60000018  EBX=00000b82  ECX=00000000  EDX=02000000
+00140091041i[CPU0  ] | ESP=00000900  EBP=00000000  ESI=00000002  EDI=00000b82
+00140091041i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af PF cf
+00140091041i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
+00140091041i[CPU0  ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
+00140091041i[CPU0  ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00140091041i[CPU0  ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00140091041i[CPU0  ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00140091041i[CPU0  ] |  FS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+00140091041i[CPU0  ] |  GS:0018( 0003| 0|  0) 000b8000 00007fff 1 1
+00140091041i[CPU0  ] | EIP=00000ce3 (00000ce3)
+00140091041i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
+00140091041i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
+00140091041d[PCI   ] Exit
+00140091041i[CMOS  ] Last time is 1613320718 (Mon Feb 15 00:38:38 2021)
+00140091041i[SIM   ] quit_sim called with exit code 0
