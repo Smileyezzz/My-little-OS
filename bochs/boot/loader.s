@@ -135,6 +135,81 @@ p_mode_start:
     mov ax, SELECTOR_VIDEO
     mov gs, ax
     
-    mov byte [gs:160], 'P'
+    call setup_page                         
+    ; ---------------------------------------------------------------
+    ; Move the GDT and  descriptors to the kernel space (3G ~ 4G) above 0xc0000000
+    ; ---------------------------------------------------------------
+    sgdt [gdt_ptr]                          ; store the gdt back to address gdt_ptr
+    mov ebx, [gdt_ptr + 2]                  ; ebx => GDT_BASE
+    or dword [ebx + 0x18 + 4], 0xc0000000   ; change the video descriptor's base address to kernel 
+    add dword [gdt_ptr + 2], 0xc0000000     ; change the GDT base address to kernel 
+    add esp, 0xc0000000                     ; change the stack pointer to kernel
+    ; 1'st step => set the cr3 to page_dir_table_address
+    mov eax, PAGE_DIR_TABLE_POS
+    mov cr3, eax
+    ; 2'nd step => enable the cr0's PG bits
+    mov eax, cr0
+    or eax, 0x80000000
+    mov cr0, eax
+    ; 3'rd step => reload the gdt
+    lgdt [gdt_ptr]
+    mov byte [gs:160], 'V'
 
     jmp $
+
+
+setup_page:
+    ; initialize the Page dir table (4KB)
+    mov ecx, 4096
+    mov esi, 0
+    .clear_page_dir:
+        mov byte [PAGE_DIR_TABLE_POS + esi], 0
+        inc esi
+        loop .clear_page_dir
+    ; ---------------------------------------------------------------
+    ; set the 0 and 768 pde point to 0x101000, and the attributes are both 0x7
+    ; 768 is the first pde of kernel 
+    ; ==> content of 0 and 768 pde = 0x101007
+    ; the last pde points to the first pde => dynamic paging
+    ; ==> content of the last pde = 0x100007
+    ; ---------------------------------------------------------------
+    .create_pde:
+        mov eax, PAGE_DIR_TABLE_POS
+        add eax, 0x1000
+        mov ebx, eax                            ; backup the first page table address
+        or eax, PG_US_U | PG_RW_W | PG_P        ; attribution = 0x7
+        mov [PAGE_DIR_TABLE_POS], eax
+        mov [PAGE_DIR_TABLE_POS+0xc00], eax     ; 0xc00 = 0x300*4, the 768'th pde
+        sub eax, 0x1000
+        mov [PAGE_DIR_TABLE_POS+4092], eax      ; last pde points to first pde
+    ; ---------------------------------------------------------------
+    ; 1 page table handel 4MB, but we use only 1MB for kernel 
+    ; 1MB / 4KB = 256 ==> we only need 256 page table entry
+    ; edx is the physical address
+    ; ---------------------------------------------------------------
+    mov ecx, 256
+    mov esi, 0
+    mov edx, PG_US_U | PG_RW_W | PG_P
+    .create_pte:
+        mov [ebx+esi*4], edx                    ; ebx = 0x101000
+        add edx, 4096
+        inc esi
+        loop .create_pte
+    ; ---------------------------------------------------------------
+    ; Create the kernel page table first, therefore the kernel can be shared
+    ; 769~1022 pde use the address from 0x102000 ~
+    ; 1023 pde points to the first 0x100000
+    ; ---------------------------------------------------------------
+    mov eax, PAGE_DIR_TABLE_POS
+    add eax, 0x2000
+    or eax, PG_US_U | PG_RW_W | PG_P
+    mov ebx, PAGE_DIR_TABLE_POS
+    mov ecx, 254
+    mov esi, 769
+    .create_kernel_pde:
+        mov [ebx+esi*4], eax
+        inc esi
+        add eax, 0x1000
+        loop .create_kernel_pde
+        ret 
+
